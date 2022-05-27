@@ -460,8 +460,14 @@ int main()
 	// char * src1 = (char *)"AAAAAAAAA";
 //dest[0] = 'B';
 //     size_t len =  3;
-
-test_strncmp("test\200", "test\0", 7);
+char *src = "thanks to @apellicc for this test !\r\n";
+        char dst1[0xF0];
+        int size = strlen(src);
+	char *src1 = "thanks to @apellicc for this test !\r\n";
+        char dst11[0xF0];	
+	test_memmove("", "" - 1, "", "" - 1, 0);
+// test_memcpy(((void *)0), ((void *)0),((void *)0), ((void *)0) ,3);
+// test_strncmp("test\200", "test\0", 7);
 // char *dest; memset(dest, 'j', 30);
 // // 	char * src = (char *)"AAAAAAAAA";
 // // 	dest[0] = 'B';
