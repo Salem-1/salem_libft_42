@@ -95,11 +95,9 @@ void test_memcpy(
 
     printf("src is <%s>\n \n", src);
     memcpy(dst, src, n);
-   printf("PC  result memcpy() <%s> \n",  dst);
-    printf("#######################\n");
-    
+   printf("PC  result   memcpy() <%s> \n",  dst);
     ft_memcpy(dst2, src2, n);
-    printf("my  result ft_memcpy() <%s> \n", dst2);
+    printf("my result ft_memcpy() <%s> \n", dst2);
     // printf("\n\n");
     if (!strcmp(dst, dst2))
         printf("-----> Passed :)\n");
@@ -456,17 +454,38 @@ int main()
 // 	char src2[30]; memset(src2, 0, 30);
 //char * src = (char *)"    123 45 67               89     10";
 //    src2[0] = 'B';
-test_itoa(-2147483648);
+// test_itoa(-2147483648);
 // test_split(" Tripouille ", ' '); 
 // 	char dest[30]; memset(dest, 0, 30);
 	// char * src1 = (char *)"AAAAAAAAA";
-// 	dest[0] = 'B';
+//dest[0] = 'B';
 //     size_t len =  3;
 
-// char dest[30]; memset(dest, 0, 30);
-// 	char * src = (char *)"AAAAAAAAA";
-// 	dest[0] = 'B';
-	//memset(dest, 'B', 4);
+test_strncmp("test\200", "test\0", 7);
+// char *dest; memset(dest, 'j', 30);
+// // 	char * src = (char *)"AAAAAAAAA";
+// // 	dest[0] = 'B';
+// void	*mem;
+
+
+// 	if (!(mem = malloc(sizeof(*mem) * 30)))
+// 		return (0);
+// 	memset(mem, 'j', 30);
+// //  ft_memcpy(mem, "zyxwvutsrqponmlkjihgfedcba", 14)
+//  test_memcpy(mem,  "zyxwvutsrqponmlkjihgfedcba",dest, "zyxwvutsrqponmlkjihgfedcba", 14);
+		
+// void	*mem;
+
+
+// 	alarm(5);
+// 	if (!(mem = malloc(sizeof(*mem) * 15)))
+// 		return (0);
+// 	memset(mem, 'j', 15);
+// 	//test_memset(mem, "Hello my friend",'c', 5);
+// 	ft_memset(mem, 'c', 5);
+// 	printf("mem is <%s>", mem);
+	// 	write(1, "mem's adress was not returned\n", 30);
+	// 	write(1, mem, 15);
 	//memset(dest, '1', 10);
 	// check(ft_strlcat(dest, src, 5) == strlen(src) + 5 && !strcmp(dest, "1111111111")); showLeaks();
 	//  memset(dest, 0, 30); 

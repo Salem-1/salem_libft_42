@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 21:10:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/15 21:11:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/05/27 07:08:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		*((char *)dst + i) = *((char *)src + i);
 		i++;
 	}
-	return (dst - n);
+	return (dst);
 }

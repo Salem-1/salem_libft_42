@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 21:07:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/16 16:43:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/05/27 07:10:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		i;
-	int		c;
+	int				i;
+	int				c;
 	unsigned char	*str1;
 	unsigned char	*str2;
 
