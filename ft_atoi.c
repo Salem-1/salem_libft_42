@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:37:18 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/15 19:36:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/05/31 08:08:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,21 @@ static int	ft_isspace(const char *c)
 
 static int	int_generator(const char *str, int num, int sign)
 {
+	int	outliar;
+
+	outliar = 0;
 	while (*str >= '0' && *str <= '9')
 	{
 		num = num * 10 + (*str - '0');
 		str++;
+		outliar++;
+	}
+	if (outliar > 18)
+	{
+		if (sign == -1)
+			return (0);
+		else
+			return (-1);
 	}
 	return (num * sign);
 }

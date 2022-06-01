@@ -6,14 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:28:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/22 15:01:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/05/31 19:53:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static int	check_char(char const *s, char const *set);
-static void	*copier(char const *s1);
 static int	starter(const char *s1, const char *set, int flag);
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -22,24 +21,26 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		start;
 	int		end;
 
-	if (set == NULL)
-		return ((char *)copier(s1));
+	if (set == NULL || !*set)
+		return (ft_strdup(s1));
 	if (!s1)
 		return ("\0");
 	start = starter(s1, set, 0);
 	end = starter(s1, set, 1);
-	if (start > end || start == ft_strlen(s1) -1)
+	if (start > end || start == (int)ft_strlen(s1) -1)
 	{
 		trimmed = malloc(sizeof(char) * (1));
+		if (!trimmed)
+			return (NULL);
 		*trimmed = '\0';
 	}
 	else
 	{
-		trimmed = malloc(sizeof(char) * (end - start + 1));
+		trimmed = malloc(sizeof(char) * (end - start + 2));
+		if (!trimmed)
+			return (NULL);
 		ft_strlcpy(trimmed, &s1[start], end - start + 2);
 	}
-	if (!trimmed)
-		return (NULL);
 	return (trimmed);
 }
 
@@ -57,14 +58,6 @@ static int	check_char(char const *s, char const *set)
 	return (0);
 }
 
-static void	*copier(char const *s1)
-{
-	char	*copy;
-
-	copy = (char *)malloc(sizeof(char) * ft_strlen(s1));
-	return (memcpy(copy, s1, ft_strlen(s1)));
-}
-
 static int	starter(const char *s1, const char *set, int flag)
 {
 	int	index;
@@ -72,7 +65,7 @@ static int	starter(const char *s1, const char *set, int flag)
 	if (!flag)
 	{
 		index = 0;
-		while (index < ft_strlen((char *)s1))
+		while (index < (int)ft_strlen((char *)s1))
 		{
 			if (!check_char(&s1[index], set))
 				break ;
@@ -81,7 +74,7 @@ static int	starter(const char *s1, const char *set, int flag)
 	}
 	else
 	{
-		index = ft_strlen(s1) - 1;
+		index = (int)ft_strlen(s1) - 1;
 		while (index > 0)
 		{
 			if (!check_char(&s1[index], set))

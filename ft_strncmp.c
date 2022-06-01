@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:23:59 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/27 08:20:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/05/31 07:04:19 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	{
 		if ((unsigned char)s1[i] != (unsigned char)s2[i])
 			return ((unsigned char )s1[i] - (unsigned char)s2[i]);
+		if (!s1[i] && !s2[i])
+			return (0);
 		i++;
 	}
 	return (0);

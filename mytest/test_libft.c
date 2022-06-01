@@ -109,13 +109,14 @@ void test_memmove(
     const void * src,
     void * dst2,
     const void * src2,
-     size_t n){
+     size_t n)
+	 {
 
     printf("\nsrc is <%s> ", src);
     printf("dst is <%s>\n\n", dst);
     memmove(dst, src, n);
    printf("PC result memmove() <%s> \n",  dst);
-    //printf("\n");
+    printf("\n");
     
     ft_memmove(dst2, src2, n);
     printf("my res ft_memmove() <%s> \n", dst2);
@@ -157,7 +158,8 @@ void test_strlcat(
     char *dst,    
     char *src,
     char *dst2,
-    char *src2, size_t len
+    char *src2, 
+	size_t len
     )
     {
         size_t check1;
@@ -166,7 +168,7 @@ void test_strlcat(
         size_t n2 = len;
         
     printf("\nsrc is <%s> ", src);
-    printf("dst is <%s>\n\n", dst);
+    printf("dst is <%s>, size <%zu>\n\n", dst, len);
     check1 = strlcat(dst, src, n1);
    printf("PC result strlcat() dest is <%s> and it returns %zu \n",  dst, check1);
     //printf("\n");
@@ -301,6 +303,10 @@ void test_calloc(size_t count, size_t size)
         }
     }
     printf(" -------------------------- \n\n");
+	if (!memcmp(pc, my, size))
+        printf("-----> Passed :)\n");
+    else
+        printf("~~~~~> FAILED :(\n\n");       
 }
 
 void test_strdup(char *s1)
@@ -446,6 +452,20 @@ void test_putnbr_fd(int c)
 
 int main()
 {
+	//char *s = "      split       this for   me  !       ";
+	test_split("        ",  ' ');
+	// test_atoi("-999999999999999999");
+	           
+	// const size_t size = 10;
+    // char *str = malloc(size );
+    // char *buff = malloc(size);
+	// strcpy(buff, "AB");
+	// strcpy(str,"CDEFGHI" );
+	// char *str1 = malloc(size);
+    // char *buff1 = malloc(size);
+	// strcpy(buff1, "AB");
+	// strcpy(str1,"CDEFGHI" );
+	// test_strlcat(buff, str, buff1, str1, 10);
 // test_strtrim("abcdba", "acb");
 //test_strtrim("   xxxtripouille", " x");
 // test_strjoin("42", "");
@@ -459,13 +479,14 @@ int main()
 // 	char dest[30]; memset(dest, 0, 30);
 	// char * src1 = (char *)"AAAAAAAAA";
 //dest[0] = 'B';
-//     size_t len =  3;
-char *src = "thanks to @apellicc for this test !\r\n";
-        char dst1[0xF0];
-        int size = strlen(src);
-	char *src1 = "thanks to @apellicc for this test !\r\n";
-        char dst11[0xF0];	
-	test_memmove("", "" - 1, "", "" - 1, 0);
+// //     size_t len =  3;
+// char *src = "thanks to @apellicc for this test !\r\n";
+//         char dst1[0xF0];
+//         int size = strlen(src);
+// 	char *src1 = "thanks to @apellicc for this test !\r\n";
+//         char dst11[0xF0];	
+// char b[0xF0];
+// test_memmove(((void *)0), b,((void *)0), b, 5);
 // test_memcpy(((void *)0), ((void *)0),((void *)0), ((void *)0) ,3);
 // test_strncmp("test\200", "test\0", 7);
 // char *dest; memset(dest, 'j', 30);
