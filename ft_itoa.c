@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 20:34:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/24 21:51:34 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/06/01 08:27:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_itoa(int n)
 	i = 0;
 	if (n == 0 || n == -2147483648)
 		return (specials(n));
-	result = malloc(sizeof(char) * num_order(n) + 2);
+	result = malloc(sizeof(char) * (num_order(n) + 1));
 	if (result == NULL)
 		return (NULL);
 	if (n < 0)
@@ -96,7 +96,7 @@ static char	*specials(int c)
 
 	if (c == 0)
 	{
-		result = (char *)malloc(sizeof(char *) * 2);
+		result = (char *)malloc(sizeof(char ) * 2);
 		result[0] = '0';
 		result[1] = '\0';
 	}

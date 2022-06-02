@@ -453,7 +453,7 @@ void test_putnbr_fd(int c)
 int main()
 {
 	//char *s = "      split       this for   me  !       ";
-	test_split("        ",  ' ');
+	test_itoa(-5859);
 	// test_atoi("-999999999999999999");
 	           
 	// const size_t size = 10;
