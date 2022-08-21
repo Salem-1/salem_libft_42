@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:41:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/06/02 06:15:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/06/03 17:35:53 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <ctype.h>
-# include <unistd.h>   
-# include <sys/types.h>
-# include <sys/stat.h>
+# include <unistd.h>
 # include <fcntl.h>
 
 int		ft_isalpha(int c);

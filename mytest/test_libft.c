@@ -1,5 +1,15 @@
 
-#include "libft.h"
+//#include "libft.h"
+#include "../libft_bonus.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 size_t static mystrlen(const char *s)
 {
@@ -47,7 +57,7 @@ void test_isalpha(int c){
 void test_strlen(const char *s )
 {
     printf("PC  strlen()   <%lu>\n",  strlen(s));
-    printf("my  ft_strlen()     <%d>\n", ft_strlen(s));
+    printf("my  ft_strlen()     <%zu>\n", ft_strlen(s));
     printf("\n-----------------\n");
     }
 void test_memset(char *b,char * temp, int c, size_t len)
@@ -95,9 +105,11 @@ void test_memcpy(
 
     printf("src is <%s>\n \n", src);
     memcpy(dst, src, n);
-   printf("PC  result   memcpy() <%s> \n",  dst);
+   printf("PC  result memcpy() <%s> \n",  dst);
+    printf("#######################\n");
+    
     ft_memcpy(dst2, src2, n);
-    printf("my result ft_memcpy() <%s> \n", dst2);
+    printf("my  result ft_memcpy() <%s> \n", dst2);
     // printf("\n\n");
     if (!strcmp(dst, dst2))
         printf("-----> Passed :)\n");
@@ -109,14 +121,13 @@ void test_memmove(
     const void * src,
     void * dst2,
     const void * src2,
-     size_t n)
-	 {
+     size_t n){
 
     printf("\nsrc is <%s> ", src);
     printf("dst is <%s>\n\n", dst);
     memmove(dst, src, n);
    printf("PC result memmove() <%s> \n",  dst);
-    printf("\n");
+    //printf("\n");
     
     ft_memmove(dst2, src2, n);
     printf("my res ft_memmove() <%s> \n", dst2);
@@ -158,8 +169,7 @@ void test_strlcat(
     char *dst,    
     char *src,
     char *dst2,
-    char *src2, 
-	size_t len
+    char *src2, size_t len
     )
     {
         size_t check1;
@@ -168,7 +178,7 @@ void test_strlcat(
         size_t n2 = len;
         
     printf("\nsrc is <%s> ", src);
-    printf("dst is <%s>, size <%zu>\n\n", dst, len);
+    printf("dst is <%s>\n\n", dst);
     check1 = strlcat(dst, src, n1);
    printf("PC result strlcat() dest is <%s> and it returns %zu \n",  dst, check1);
     //printf("\n");
@@ -303,10 +313,6 @@ void test_calloc(size_t count, size_t size)
         }
     }
     printf(" -------------------------- \n\n");
-	if (!memcmp(pc, my, size))
-        printf("-----> Passed :)\n");
-    else
-        printf("~~~~~> FAILED :(\n\n");       
 }
 
 void test_strdup(char *s1)
@@ -450,22 +456,147 @@ void test_putnbr_fd(int c)
     
 }
 
+void test_lstnew(char *str)
+{
+	t_list *node = ft_lstnew(str);
+	printf("The node content is <%s>\n", node ->content);
+}
+
+void test_lstaddfront(char *str)
+{
+	
+	
+	t_list *new_node = ft_lstnew(ft_strdup(str));
+	t_list **lst;
+	char *s = "old_node";
+	t_list *first = ft_lstnew(ft_strdup(s));
+	
+	//*lst= first;
+	 printf("first node now is: <%s>\n", first->content);
+	ft_lstadd_front(&first, new_node);
+	printf("first node now is: <%s>\n", first->content);
+}
+
+void	test_lstsize(int n)
+{
+	char *s = "HI";
+	t_list	*node1 = ft_lstnew(ft_strdup(s));
+	t_list	*node2 = ft_lstnew(ft_strdup(s));
+	t_list	*node3 = ft_lstnew(ft_strdup(s));
+
+	node1->next = node2;
+	node2->next = node3;
+	printf("testing the lst siez:\n");
+	printf("lst of size 3 == %d\n", ft_lstsize(node1));
+	free(node2);
+	free(node1);
+	free(node3);
+}
+
+void test_lstlast()
+{
+	char *s = "last node";
+	//t_list	*node1 = ft_lstnew(ft_strdup("hello"));
+	t_list *node1 = ((void*)0);
+	t_list	*node2 = ft_lstnew(ft_strdup("hi"));
+	//t_list	*node3 = ft_lstnew(ft_strdup(s));
+
+	//node1->next = node2;
+	//node2->next = node3;
+	printf("last node is %s\n", (char *)ft_lstlast(node1));
+	free(node2);
+}
+
+void test_lstaddback()
+{
+	char *s = "last node";
+	//t_list *node1 = ((void *)0); 
+	// t_list a;
+	// a.content = "hi";
+	// a.next = NULL;
+	// node1->next = &a;
+	t_list *head = NULL;
+	t_list	*node1 = ft_lstnew(ft_strdup("first node"));
+	t_list	*node2 = ft_lstnew(ft_strdup("second node"));
+	t_list	*node3 = ft_lstnew("third node");
+	// node1->next = node2;
+	// node2->next = node3;
+	//printf("last node before lst_addback <%s>\n", ft_lstlast(node1)->content);
+	// t_list *b = &a;
+	//printf("%s\n", node1->next->content);
+	ft_lstadd_back(&head, node1);
+	ft_lstadd_back(&head, node2);
+	ft_lstadd_back(&head, node3);
+	// printf("last node after lst_addback <%s>\n", a.next->content);
+	printf("last node after lst_addback <%s>\n", head->content);
+	printf("last node after lst_addback <%s>\n", head->next->content);
+	printf("last node after lst_addback <%s>\n", head->next->next->content);
+	//free(node1);
+}
+void del(void *ptr)
+{
+	if(ptr)
+		free(ptr);
+}
+void test_lstdelone()
+{
+	char *s = "last node";
+	t_list	*node1 = ft_lstnew(ft_strdup("node 1"));
+	//t_list *node1 = ((void*)0);
+	t_list	*node2 = ft_lstnew(ft_strdup("node 2"));
+	t_list	*node3 = ft_lstnew(ft_strdup(s));
+
+	node1->next = node2;
+	node2->next = node3;
+	printf("lst1 before deletion %s\n", node1->content);
+	ft_lstdelone(node1, del);
+	printf("last node is %s\n", (char *)ft_lstlast(node1));
+	free(node2);
+}
+
+void test_lstclear()
+{
+		char *s = "last node";
+	t_list	*node1 = ft_lstnew(ft_strdup("node 1"));
+	//t_list *node1 = ((void*)0);
+	t_list	*node2 = ft_lstnew(ft_strdup("node 2"));
+	t_list	*node3 = ft_lstnew(ft_strdup(s));
+	
+}
+
+void *f(void *s)
+{
+	char *t = "success";
+	//s = ft_strjoin(s, t);
+	printf("I do nothing function f\n");
+	return (s);
+}
+void	test_lstmap()
+{
+	char *s = "node 3";
+	t_list	*node1 = ft_lstnew(ft_strdup("node 1"));
+	//t_list *node1 = ((void*)0);
+	t_list	*node2 = ft_lstnew(ft_strdup("node 2"));
+	t_list	*node3 = ft_lstnew(ft_strdup(s));
+	t_list *new = NULL;
+
+	node1->next = node2;
+	node2->next = node3;
+	new = ft_lstmap(node1,f, del);
+	printf("after lstmap <%s>\n", node1->content);
+	printf("after lstmap <%s>\n", node2->content);
+	printf("after lstmap <%s>\n", node3->content);	
+}
+
 int main()
 {
-	//char *s = "      split       this for   me  !       ";
-	test_itoa(-5859);
-	// test_atoi("-999999999999999999");
-	           
-	// const size_t size = 10;
-    // char *str = malloc(size );
-    // char *buff = malloc(size);
-	// strcpy(buff, "AB");
-	// strcpy(str,"CDEFGHI" );
-	// char *str1 = malloc(size);
-    // char *buff1 = malloc(size);
-	// strcpy(buff1, "AB");
-	// strcpy(str1,"CDEFGHI" );
-	// test_strlcat(buff, str, buff1, str1, 10);
+	test_lstaddback();
+	// test_lstdelone();
+//	test_lstaddback();
+	//test_lstlast();
+	//test_lstsize(3);
+	//test_lstnew("testing the lst new");
+	//test_lstaddfront("new item");
 // test_strtrim("abcdba", "acb");
 //test_strtrim("   xxxtripouille", " x");
 // test_strjoin("42", "");
@@ -474,45 +605,17 @@ int main()
 // 	char src2[30]; memset(src2, 0, 30);
 //char * src = (char *)"    123 45 67               89     10";
 //    src2[0] = 'B';
-// test_itoa(-2147483648);
+//test_itoa(-2147483648);
 // test_split(" Tripouille ", ' '); 
 // 	char dest[30]; memset(dest, 0, 30);
 	// char * src1 = (char *)"AAAAAAAAA";
-//dest[0] = 'B';
-// //     size_t len =  3;
-// char *src = "thanks to @apellicc for this test !\r\n";
-//         char dst1[0xF0];
-//         int size = strlen(src);
-// 	char *src1 = "thanks to @apellicc for this test !\r\n";
-//         char dst11[0xF0];	
-// char b[0xF0];
-// test_memmove(((void *)0), b,((void *)0), b, 5);
-// test_memcpy(((void *)0), ((void *)0),((void *)0), ((void *)0) ,3);
-// test_strncmp("test\200", "test\0", 7);
-// char *dest; memset(dest, 'j', 30);
-// // 	char * src = (char *)"AAAAAAAAA";
-// // 	dest[0] = 'B';
-// void	*mem;
+// 	dest[0] = 'B';
+//     size_t len =  3;
 
-
-// 	if (!(mem = malloc(sizeof(*mem) * 30)))
-// 		return (0);
-// 	memset(mem, 'j', 30);
-// //  ft_memcpy(mem, "zyxwvutsrqponmlkjihgfedcba", 14)
-//  test_memcpy(mem,  "zyxwvutsrqponmlkjihgfedcba",dest, "zyxwvutsrqponmlkjihgfedcba", 14);
-		
-// void	*mem;
-
-
-// 	alarm(5);
-// 	if (!(mem = malloc(sizeof(*mem) * 15)))
-// 		return (0);
-// 	memset(mem, 'j', 15);
-// 	//test_memset(mem, "Hello my friend",'c', 5);
-// 	ft_memset(mem, 'c', 5);
-// 	printf("mem is <%s>", mem);
-	// 	write(1, "mem's adress was not returned\n", 30);
-	// 	write(1, mem, 15);
+// char dest[30]; memset(dest, 0, 30);
+// 	char * src = (char *)"AAAAAAAAA";
+// 	dest[0] = 'B';
+	//memset(dest, 'B', 4);
 	//memset(dest, '1', 10);
 	// check(ft_strlcat(dest, src, 5) == strlen(src) + 5 && !strcmp(dest, "1111111111")); showLeaks();
 	//  memset(dest, 0, 30); 

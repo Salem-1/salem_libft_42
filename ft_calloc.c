@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 20:07:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/31 17:37:36 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/06/02 21:16:38 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	int		*result;
-	size_t	i;
-
-	i = 0;
+ 
 	result = malloc(size * count);
 	if (!result)
 		return (NULL);
