@@ -6,13 +6,12 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 20:34:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/06/01 08:27:23 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/08/29 17:43:58 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-//solve without malloc
 static int	num_order(int n);
 static int	ten_pow(int c);
 static char	*specials(int c);
@@ -22,10 +21,8 @@ char	*ft_itoa(int n)
 {
 	int		i;
 	char	*result;
-	int		temp;
 	int		pow;
 
-	temp = 1;
 	i = 0;
 	if (n == 0 || n == -2147483648)
 		return (specials(n));
@@ -103,7 +100,7 @@ static char	*specials(int c)
 	else
 	{
 		result = malloc(sizeof(char) * 12);
-		strlcpy(result, "-2147483648", 12);
+		ft_strlcpy(result, "-2147483648", 12);
 	}
 	return (result);
 }
